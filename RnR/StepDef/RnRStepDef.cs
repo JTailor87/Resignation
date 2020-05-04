@@ -1,8 +1,10 @@
 ﻿using OpenQA.Selenium.Chrome;
+using RnR.PageObjectMethods;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -21,6 +23,7 @@ namespace RnR
         }
 
         [Given(@"(.*) logs in")]
+        [Obsolete]
         public void GivenLogsIn(string p0, Table table)
         {
             Util details = table.CreateInstance<Util>();
@@ -32,6 +35,9 @@ namespace RnR
             PropertiesCollection.driver.Navigate().GoToUrl(details.URL);
             SetMethods.PageLoadTimeout(20);
             PropertiesCollection.driver.Manage().Window.Maximize();
+
+            LoginPageObjects login = new LoginPageObjects();
+            login.LoginPage(details.Email, details.Password);
         }
 
         [Given(@"Lands on the (.*)")]

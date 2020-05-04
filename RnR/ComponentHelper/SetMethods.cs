@@ -32,5 +32,27 @@ namespace RnR
         {
             PropertiesCollection.driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(Time);
         }
+
+        [Obsolete]
+        public static void WaitElementExists(double Time, string element, string valueOfElement)
+        {
+            var wait = new WebDriverWait(PropertiesCollection.driver, TimeSpan.FromSeconds(Time));
+            if (element == "Id")
+            {
+                wait.Until(ExpectedConditions.ElementExists((By.Id(valueOfElement))));
+            }
+            else if (element == "Xpath")
+            {
+                wait.Until(ExpectedConditions.ElementExists((By.XPath(valueOfElement))));
+            }
+            else if (element == "Name")
+            {
+                wait.Until(ExpectedConditions.ElementExists((By.Name(valueOfElement))));
+            }
+            else if (element == "LinkText")
+            {
+                wait.Until(ExpectedConditions.ElementExists((By.LinkText(valueOfElement))));
+            }
+        }
     }
 }
