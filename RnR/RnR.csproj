@@ -128,6 +128,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComponentHelper\GetMethods.cs" />
+    <Compile Include="ComponentHelper\GetOTPHelper.cs" />
+    <Compile Include="PageObjectMethods\AccessTokenPageObjects.cs" />
     <Compile Include="PageObjectMethods\LoginPageObjects.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="PropertiesCollection.cs" />

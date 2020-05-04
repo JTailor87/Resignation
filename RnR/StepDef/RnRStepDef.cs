@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium.Chrome;
+using RnR.ComponentHelper;
 using RnR.PageObjectMethods;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,9 @@ namespace RnR
 
             LoginPageObjects login = new LoginPageObjects();
             login.LoginPage(details.Email, details.Password);
+
+            AccessTokenPageObjects AccessToken = new AccessTokenPageObjects();
+            AccessToken.EnterAccessTokenAndConti();
         }
 
         [Given(@"Lands on the (.*)")]
