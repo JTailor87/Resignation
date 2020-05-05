@@ -3,7 +3,9 @@ using RnR.ComponentHelper;
 using RnR.PageObjectMethods;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using TechTalk.SpecFlow;
@@ -28,14 +30,19 @@ namespace RnR
         public void GivenLogsIn(string p0, Table table)
         {
             Util details = table.CreateInstance<Util>();
-            //Headless chrome
+
+            InitializeBrowser.BrowserName("Chrome", "Normal");
+
             /*var chromeOptions = new ChromeOptions();
+            ChromeDriverService service = ChromeDriverService.CreateDefaultService(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            service.SuppressInitialDiagnosticInformation = true;
             chromeOptions.AddArguments("headless");
-            PropertiesCollection.driver = new ChromeDriver(chromeOptions);*/
-            PropertiesCollection.driver = new ChromeDriver();
+            PropertiesCollection.driver = new ChromeDriver(service, chromeOptions);*/
+            /*Configuration.PropertiesCollection.driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), chromeOptions);*/
+            /*Configuration.PropertiesCollection.driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));*/
+            /*Configuration.PropertiesCollection.driver = new ChromeDriver();*/
             PropertiesCollection.driver.Navigate().GoToUrl(details.URL);
             SetMethods.PageLoadTimeout(20);
-            PropertiesCollection.driver.Manage().Window.Maximize();
 
             LoginPageObjects login = new LoginPageObjects();
             login.LoginPage(details.Email, details.Password);
