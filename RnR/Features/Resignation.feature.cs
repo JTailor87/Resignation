@@ -136,6 +136,9 @@ this.FeatureBackground();
 #line 18
  testRunner.Given("A valid HR Ops user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+#line 19
+ testRunner.Then("Close the browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

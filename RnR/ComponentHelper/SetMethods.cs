@@ -1,10 +1,13 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using AutoIt;
 
 namespace RnR
 {
@@ -33,26 +36,68 @@ namespace RnR
             PropertiesCollection.driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(Time);
         }
 
+        public static void HowmanyIFrames()
+        {
+            List<IWebElement> frames = new List<IWebElement>(PropertiesCollection.driver.FindElements(By.TagName("iframe")));
+            Console.WriteLine("Number of Frames: " + frames.Count);
+            for (int i = 0; i < frames.Count; i++)
+            {
+                Console.WriteLine("frame[" + i + "]: " + frames[i].GetAttribute("id").ToString());
+            }
+        }
+        public static void ScrollById(String ID)
+        {
+            var element = PropertiesCollection.driver.FindElement(By.Id(ID));
+            Actions actions = new Actions(PropertiesCollection.driver);
+            actions.MoveToElement(element);
+            actions.Perform();
+        }
+
+        public static void Alert(String Action)
+        {
+            if (Action == "Accept")
+            {
+                try
+                {
+                    IAlert alert = PropertiesCollection.driver.SwitchTo().Alert();
+                    Console.WriteLine(alert.Text);
+                    alert.Accept();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            else if (Action == "Cancel")
+            {
+                try
+                {
+                    IAlert alert = PropertiesCollection.driver.SwitchTo().Alert();
+                    Console.WriteLine(alert.Text);
+                    alert.Dismiss();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+        public static void AutoITUpload(String windowsName, String filePath)
+        {
+            /* AutoItX3 autoIt = new AutoItX3();*/
+            //Open - is depend upon your browser i.e. for firefox it is "File Upload"
+            AutoItX.WinActivate(windowsName);
+            Thread.Sleep(1000);
+            AutoItX.Send(@filePath);
+            Thread.Sleep(1000);
+            AutoItX.Send("{ENTER}");
+        }
+
         [Obsolete]
-        public static void WaitElementExists(double Time, string element, string valueOfElement)
+        public static void WaitElementExists(double Time, IWebElement webElement)
         {
             var wait = new WebDriverWait(PropertiesCollection.driver, TimeSpan.FromSeconds(Time));
-            if (element == "Id")
-            {
-                wait.Until(ExpectedConditions.ElementExists((By.Id(valueOfElement))));
-            }
-            else if (element == "Xpath")
-            {
-                wait.Until(ExpectedConditions.ElementExists((By.XPath(valueOfElement))));
-            }
-            else if (element == "Name")
-            {
-                wait.Until(ExpectedConditions.ElementExists((By.Name(valueOfElement))));
-            }
-            else if (element == "LinkText")
-            {
-                wait.Until(ExpectedConditions.ElementExists((By.LinkText(valueOfElement))));
-            }
+            wait.Until(ExpectedConditions.ElementToBeClickable(webElement));
         }
     }
 }

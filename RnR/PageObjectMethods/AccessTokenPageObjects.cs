@@ -26,7 +26,7 @@ namespace RnR.PageObjectMethods
         public void EnterAccessTokenAndConti()
         {
             SetMethods.PageLoadTimeout(20);
-            SetMethods.WaitElementExists(20, "Id", "AccessToken");
+            SetMethods.WaitElementExists(20, AccessToken);
             AccessToken.EnterText(GetOTPHelper.GetOtpForUser("32d812dab6@emailtown.club"));
             Continue.Clicks();
         }

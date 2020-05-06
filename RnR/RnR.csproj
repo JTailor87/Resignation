@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoItX3.Assembly, Version=3.0.0.0, Culture=neutral, PublicKeyToken=a646454c8d475470, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoItX.Dotnet.3.3.14.5\lib\AutoItX3.Assembly.dll</HintPath>
+    </Reference>
     <Reference Include="BoDi, Version=1.4.1.0, Culture=neutral, PublicKeyToken=ff7cd5ea2744b496, processorArchitecture=MSIL">
       <HintPath>..\packages\BoDi.1.4.1\lib\net45\BoDi.dll</HintPath>
     </Reference>
@@ -131,6 +134,7 @@
     <Compile Include="ComponentHelper\GetOTPHelper.cs" />
     <Compile Include="ComponentHelper\InitializeBrowser.cs" />
     <Compile Include="PageObjectMethods\AccessTokenPageObjects.cs" />
+    <Compile Include="PageObjectMethods\LandingPageObjects.cs" />
     <Compile Include="PageObjectMethods\LoginPageObjects.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="PropertiesCollection.cs" />
@@ -161,10 +165,12 @@
     <Error Condition="!Exists('..\packages\SpecFlow.NUnit.3.1.97\build\SpecFlow.NUnit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.NUnit.3.1.97\build\SpecFlow.NUnit.targets'))" />
     <Error Condition="!Exists('..\packages\Selenium.WebDriver.IEDriver.3.150.1\build\Selenium.WebDriver.IEDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.IEDriver.3.150.1\build\Selenium.WebDriver.IEDriver.targets'))" />
     <Error Condition="!Exists('..\packages\Selenium.WebDriver.MicrosoftDriver.17.17134.0\build\Selenium.WebDriver.MicrosoftDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.MicrosoftDriver.17.17134.0\build\Selenium.WebDriver.MicrosoftDriver.targets'))" />
+    <Error Condition="!Exists('..\packages\AutoItX.Dotnet.3.3.14.5\build\AutoItX.Dotnet.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AutoItX.Dotnet.3.3.14.5\build\AutoItX.Dotnet.targets'))" />
   </Target>
   <Import Project="..\packages\SpecFlow.Tools.MsBuild.Generation.3.1.97\build\SpecFlow.Tools.MsBuild.Generation.targets" Condition="Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.1.97\build\SpecFlow.Tools.MsBuild.Generation.targets')" />
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.81.0.4044.6900\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.81.0.4044.6900\build\Selenium.WebDriver.ChromeDriver.targets')" />
   <Import Project="..\packages\SpecFlow.NUnit.3.1.97\build\SpecFlow.NUnit.targets" Condition="Exists('..\packages\SpecFlow.NUnit.3.1.97\build\SpecFlow.NUnit.targets')" />
   <Import Project="..\packages\Selenium.WebDriver.IEDriver.3.150.1\build\Selenium.WebDriver.IEDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.IEDriver.3.150.1\build\Selenium.WebDriver.IEDriver.targets')" />
   <Import Project="..\packages\Selenium.WebDriver.MicrosoftDriver.17.17134.0\build\Selenium.WebDriver.MicrosoftDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.MicrosoftDriver.17.17134.0\build\Selenium.WebDriver.MicrosoftDriver.targets')" />
+  <Import Project="..\packages\AutoItX.Dotnet.3.3.14.5\build\AutoItX.Dotnet.targets" Condition="Exists('..\packages\AutoItX.Dotnet.3.3.14.5\build\AutoItX.Dotnet.targets')" />
 </Project>

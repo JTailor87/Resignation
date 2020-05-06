@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium.Chrome;
+﻿using NUnit.Framework;
+using OpenQA.Selenium.Chrome;
 using RnR.ComponentHelper;
 using RnR.PageObjectMethods;
 using System;
@@ -16,6 +17,13 @@ namespace RnR
     [Binding]
     public sealed class RnRStepDef
     {
+        [Obsolete]
+        LoginPageObjects login;
+        [Obsolete]
+        AccessTokenPageObjects AccessToken;
+        [Obsolete]
+        LandingPageObjects landingPage;
+
         // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
 
         private readonly ScenarioContext context;
@@ -33,46 +41,54 @@ namespace RnR
 
             InitializeBrowser.BrowserName("Chrome", "Normal");
 
-            /*var chromeOptions = new ChromeOptions();
-            ChromeDriverService service = ChromeDriverService.CreateDefaultService(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-            service.SuppressInitialDiagnosticInformation = true;
-            chromeOptions.AddArguments("headless");
-            PropertiesCollection.driver = new ChromeDriver(service, chromeOptions);*/
-            /*Configuration.PropertiesCollection.driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), chromeOptions);*/
-            /*Configuration.PropertiesCollection.driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));*/
-            /*Configuration.PropertiesCollection.driver = new ChromeDriver();*/
             PropertiesCollection.driver.Navigate().GoToUrl(details.URL);
             SetMethods.PageLoadTimeout(20);
 
-            LoginPageObjects login = new LoginPageObjects();
+            login = new LoginPageObjects();
             login.LoginPage(details.Email, details.Password);
 
-            AccessTokenPageObjects AccessToken = new AccessTokenPageObjects();
+            AccessToken = new AccessTokenPageObjects();
             AccessToken.EnterAccessTokenAndConti();
         }
 
         [Given(@"Lands on the (.*)")]
+        [Obsolete]
         public void GivenLandsOnThe(string p0, Table table)
         {
-            context.Pending();
+            landingPage = new LandingPageObjects();
+            Console.WriteLine(landingPage.GetPageTitle());
         }
 
         [When(@"User clicks on Active resignees")]
+        [Obsolete]
         public void WhenUserClicksOnActiveResignees()
         {
-            context.Pending();
+            landingPage = new LandingPageObjects();
+            landingPage.ClickOnActiveResignees();
         }
 
         [Then(@"User is directed to the HR ops dashboard")]
+        [Obsolete]
         public void ThenUserIsDirectedToTheHROpsDashboard()
         {
-            context.Pending();
+            landingPage = new LandingPageObjects();
+            String title = landingPage.UserIsOnResignationDashboard();
+            Assert.AreEqual(title, "Home", "Strings are not matching");
+            Console.WriteLine(title);
         }
 
         [Given(@"A valid HR Ops user")]
+        [Obsolete]
         public void GivenAValidHROpsUser()
         {
-            context.Pending();
+            landingPage = new LandingPageObjects();
+            Console.WriteLine(landingPage.ValidHROpsUserLoggedIn());
         }
+        [Then(@"Close the browser")]
+        public void ThenCloseTheBrowser()
+        {
+            PropertiesCollection.driver.Quit();
+        }
+
     }
 }

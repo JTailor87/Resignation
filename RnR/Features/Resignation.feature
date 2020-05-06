@@ -16,3 +16,4 @@ Background:
 
 Scenario: Viewing all employees on HR Ops dashboard
 	Given A valid HR Ops user
+	Then Close the browser

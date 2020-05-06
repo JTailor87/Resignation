@@ -27,7 +27,7 @@ namespace RnR.PageObjectMethods
         public void LoginPage(String username, String password)
         {
             SetMethods.ImplicitlyWait(10);
-            SetMethods.WaitElementExists(30, "Id", "Username");
+            SetMethods.WaitElementExists(30,Username);
             Username.EnterText(username);
             Password.EnterText(password);
             Login.Clicks();
