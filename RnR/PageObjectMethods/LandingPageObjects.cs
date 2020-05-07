@@ -42,8 +42,9 @@ namespace RnR.PageObjectMethods
         }
         public string ValidHROpsUserLoggedIn()
         {
+            SetMethods.HowmanyIFrames();
+            PropertiesCollection.driver.SwitchTo().Frame(0);
             return User.GetText();
-            //SetMethods.HowmanyIFrames();
         }
     }
 }

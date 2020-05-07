@@ -76,14 +76,7 @@ namespace RnR
             Assert.AreEqual(title, "Home", "Strings are not matching");
             Console.WriteLine(title);
         }
-
-        [Given(@"A valid HR Ops user")]
-        [Obsolete]
-        public void GivenAValidHROpsUser()
-        {
-            landingPage = new LandingPageObjects();
-            Console.WriteLine(landingPage.ValidHROpsUserLoggedIn());
-        }
+ 
         [Then(@"Close the browser")]
         public void ThenCloseTheBrowser()
         {

@@ -15,5 +15,13 @@ Background:
 	Then User is directed to the HR ops dashboard
 
 Scenario: Viewing all employees on HR Ops dashboard
-	Given A valid HR Ops user
+	When User clicks on All Employees
+	Then User is directed to the HR Ops <Dashboard>
+		 |https://qa.digital.alexanderforbes.co.za/digital/resignations.html|
+	Then Click on Name
+	Then Verify that list of all <employees belonging> to corporate appears
+	     |Zyaad|
+		 |Zwivhuya|
+		 |Zwelo|
+		 |Zwelethu|
 	Then Close the browser
